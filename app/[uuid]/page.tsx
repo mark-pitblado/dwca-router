@@ -77,6 +77,13 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
     }
   };
 
+  const handleSymbiotaClick = async () => {
+    if (domain) {
+      window.location.href = `https://${domain}/portal/collections/list.php?catnum=${uuid}&includeothercatnum=1`;
+    } else {
+      alert("Please enter a valid domain");
+    }
+  };
   // Handle Image button click
   const handleImageClick = async () => {
     router.push(`/images/${uuid}`);
@@ -166,6 +173,32 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
               </div>
             </PopoverContent>
           </Popover>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="default" className="w-3/4 md:w-full">
+                Symbiota
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-4">
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="domain" className="text-sm font-medium">
+                  Enter Portal Domain:
+                </label>
+                <input
+                  id="domain"
+                  type="text"
+                  value={domain}
+                  onChange={(e) => setDomain(e.target.value)}
+                  placeholder="bryophyteportal.org"
+                  className="border rounded p-2"
+                />
+                <Button variant="default" onClick={handleSymbiotaClick}>
+                  Submit
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
+
           <Button
             variant="default"
             className="w-3/4 md:w-full"
