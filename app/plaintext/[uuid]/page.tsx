@@ -1,68 +1,31 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { notFound } from "next/navigation";
 
-export default function PlaintextPage({
+export default async function PlaintextPage({
   params,
 }: {
   params: { uuid: string };
 }) {
   const { uuid } = params;
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const router = useRouter();
 
-  useEffect(() => {
-    // Fetch data from the GBIF API
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://api.gbif.org/v1/occurrence/search?occurrenceid=${uuid}`,
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const result = await response.json();
-        // Extract and set only the 'results' field
-        setResults(result.results);
-        setLoading(false);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          alert("An unknown error occurred");
-        }
-      }
-    };
-
-    fetchData();
-  }, [uuid]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
-      </div>
+  let results = [];
+  try {
+    const response = await fetch(
+      `https://api.gbif.org/v1/occurrence/search?occurrenceid=${uuid}`,
     );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Error: {error}
-      </div>
-    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const result = await response.json();
+    results = result.results;
+  } catch (error) {
+    return notFound();
   }
 
   return (
@@ -79,7 +42,7 @@ export default function PlaintextPage({
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink>Options</BreadcrumbLink>
+              <BreadcrumbLink href={`/${uuid}`}>Options</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -93,7 +56,7 @@ export default function PlaintextPage({
       <div className="p-4 w-full">
         <pre className="text-sm whitespace-pre-wrap">
           {results.length > 0 ? (
-            results.map((item, index) => (
+            results.map((item: any, index: number) => (
               <div key={index}>{JSON.stringify(item, null, 2)}</div>
             ))
           ) : (
