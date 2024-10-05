@@ -116,7 +116,7 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
   };
 
   const handleGenerateQrCode = () => {
-    const url = `https://${resolverDomain}/${uuid}`;
+    const url = `${resolverDomain}/${uuid}`;
     const qrCodeApiUrl = `https://quickchart.io/qr?text=${encodeURIComponent(url)}&size=${encodeURIComponent(size)}&format=${encodeURIComponent(format)}&ecLevel=${errorCorrection}`;
     window.location.href = qrCodeApiUrl;
   };
