@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,6 +12,13 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import {
   Popover,
   PopoverContent,
@@ -74,6 +82,17 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
     router.push(`/images/${uuid}`);
   };
 
+  const handleBadgeClick = () => {
+    navigator.clipboard.writeText(uuid).then(
+      () => {
+        alert("Copied to clipboard!");
+      },
+      (err) => {
+        console.error("Could not copy text: ", err);
+      },
+    );
+  };
+
   return (
     <div className="flex h-screen justify-center items-center bg-[#f5f5f5]">
       <div className="flex flex-col items-center space-y-4 w-full max-w-sm">
@@ -87,8 +106,25 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
               <BreadcrumbPage>Details</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
-        </Breadcrumb>
-
+        </Breadcrumb>{" "}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <Badge
+                variant="outline"
+                onClick={handleBadgeClick}
+                className="cursor-pointer"
+              >
+                {uuid}
+              </Badge>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div className="flex items-center space-x-2">
+                <p>Copy to clipboard</p>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <h1 className="text-2xl font-bold">Select Viewing Option</h1>
         <div className="flex flex-col space-y-2 items-center w-full">
           <Button
