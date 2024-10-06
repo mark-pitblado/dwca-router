@@ -47,13 +47,20 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
   const router = useRouter();
   const [domain, setDomain] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
-  const [resolverDomain, setResolverDomain] = useState<string>("");
+  const [specifyURL, setSpecifyURL] = useState<string>("");
+  const [symbiotaURL, setSymbiotaURL] = useState<string>("");
+  const [routerURL, setRouterURL] = useState<string>("");
   const [size, setSize] = useState<string>("150");
   const [format, setFormat] = useState<string>("png");
   const [errorCorrection, setErrorCorrection] = useState<string>("M");
 
   useEffect(() => {
-    setResolverDomain(config.resolverDomain);
+    setRouterURL(config.routerURL);
+    setSpecifyURL(config.specifyURL);
+    setSymbiotaURL(config.symbiotaURL);
+    setSize(config.qrCodeSize);
+    setFormat(config.qrCodeFormat);
+    setErrorCorrection(config.qrCodeErrorCorrection);
   }, []);
 
   const handlePlaintextClick = () => {
@@ -69,14 +76,14 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
       }
       const result = await response.json();
       const catalogNumber = result.results[0]?.catalogNumber;
-      if (domain) {
+      if (specifyURL) {
         if (catalogNumber) {
-          window.location.href = `https://${domain}/specify/simple-search/?q=${catalogNumber}`;
+          window.location.href = `${specifyURL}/specify/simple-search/?q=${catalogNumber}`;
         } else {
           alert("Catalog Number not found");
         }
       } else {
-        alert("Please enter a valid domain");
+        alert("Please enter a valid URL");
       }
     } catch (error) {
       console.error("Error fetching GBIF data:", error);
@@ -104,10 +111,10 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
   };
 
   const handleSymbiotaClick = async () => {
-    if (domain) {
-      window.location.href = `https://${domain}/portal/collections/list.php?catnum=${uuid}&includeothercatnum=1`;
+    if (symbiotaURL) {
+      window.location.href = `${symbiotaURL}/portal/collections/list.php?catnum=${uuid}&includeothercatnum=1`;
     } else {
-      alert("Please enter a valid domain");
+      alert("Please enter a valid URL");
     }
   };
   // Handle Image button click
@@ -116,7 +123,7 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
   };
 
   const handleGenerateQrCode = () => {
-    const url = `${resolverDomain}/r/${uuid}`;
+    const url = `${routerURL}/r/${uuid}`;
     const qrCodeApiUrl = `https://quickchart.io/qr?text=${encodeURIComponent(url)}&size=${encodeURIComponent(size)}&format=${encodeURIComponent(format)}&ecLevel=${errorCorrection}`;
     window.location.href = qrCodeApiUrl;
   };
@@ -172,13 +179,13 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="name" className="text-right">
-                  Resolver root
+                  Router
                 </Label>
                 <Input
-                  id="resolverDomain"
+                  id="routerURL"
                   type="url"
-                  onChange={(e) => setResolverDomain(e.target.value)}
-                  value={resolverDomain}
+                  onChange={(e) => setRouterURL(e.target.value)}
+                  value={routerURL}
                   className="col-span-3"
                 />
               </div>
@@ -201,7 +208,6 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
                 <RadioGroup
                   value={format}
                   onValueChange={(value) => setFormat(value)}
-                  defaultValue="png"
                   className="col-span-3"
                 >
                   <div className="flex items-center space-x-4">
@@ -226,7 +232,6 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
                   Error correction
                 </Label>
                 <RadioGroup
-                  defaultValue="M"
                   value={errorCorrection}
                   onValueChange={(value) => setErrorCorrection(value)}
                   className="col-span-3"
@@ -295,15 +300,14 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
             </PopoverTrigger>
             <PopoverContent className="p-4">
               <div className="flex flex-col space-y-2">
-                <label htmlFor="domain" className="text-sm font-medium">
-                  Enter Specify Domain:
+                <label htmlFor="specifyURL" className="text-sm font-medium">
+                  Enter Specify URL:
                 </label>
                 <input
-                  id="domain"
+                  id="specifyURL"
                   type="text"
-                  value={domain}
+                  value={specifyURL}
                   onChange={(e) => setDomain(e.target.value)}
-                  placeholder="sp7demofish.specifycloud.org"
                   className="border rounded p-2"
                 />
                 <Button variant="default" onClick={handleSpecifyClick}>
@@ -320,15 +324,14 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
             </PopoverTrigger>
             <PopoverContent className="p-4">
               <div className="flex flex-col space-y-2">
-                <label htmlFor="domain" className="text-sm font-medium">
-                  Enter Portal Domain:
+                <label htmlFor="symbiotaURL" className="text-sm font-medium">
+                  Enter Portal URL:
                 </label>
                 <input
-                  id="domain"
+                  id="symbiotaURL"
                   type="text"
-                  value={domain}
+                  value={symbiotaURL}
                   onChange={(e) => setDomain(e.target.value)}
-                  placeholder="bryophyteportal.org"
                   className="border rounded p-2"
                 />
                 <Button variant="default" onClick={handleSymbiotaClick}>
