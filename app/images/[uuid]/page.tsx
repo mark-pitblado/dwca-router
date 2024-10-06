@@ -50,7 +50,7 @@ export default async function ImagesPage({
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/${uuid}`}>Options</BreadcrumbLink>
+              <BreadcrumbLink href={`/r/${uuid}`}>Options</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
