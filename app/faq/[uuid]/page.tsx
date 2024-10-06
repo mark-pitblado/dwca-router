@@ -81,7 +81,7 @@ export default async function FAQPage({
           <AccordionContent>
             The application is primarily intended to open up options after
             scanning a code. For example, a given specimen can have a code that
-            encodes "https://dwca.net/4c906ce8-a2bf-425f-8d50-82197e918028".
+            encodes "https://dwca.net/r/4c906ce8-a2bf-425f-8d50-82197e918028".
             Then when this code is scanned, it will go directly to the Options
             page. You can generate a code from the options page to try it out!
           </AccordionContent>
