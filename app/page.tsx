@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import logo from "./assets/logo.svg";
 
 export default function ResolverPage() {
   const [inputValue, setInputValue] = useState("");
@@ -25,16 +27,17 @@ export default function ResolverPage() {
     } else {
       setError("");
       // Navigate to /{uuid} route with the valid UUID
-      router.push(`/${finalInputValue}`);
+      router.push(`/r/${finalInputValue}`);
     }
   };
 
   return (
     <div className="flex h-screen justify-center items-center bg-[#f5f5f5]">
       <div className="flex flex-col items-center space-y-4 w-full max-w-sm">
-        <h1 className="text-2xl font-bold">Resolver</h1>
-        <p className="text-gray-500">
-          Enter an occurrenceID for a specimen shared in Darwin Core. Must
+        <Image src={logo} alt="Main icon" width={100} height={100} />
+        <h1 className="text-2xl font-bold">DwCA Router</h1>
+        <p className="text-gray-500 text-center">
+          Enter an occurrenceID for an occurrence shared in Darwin Core. Must
           follow the UUID v1 or v4 standard. Click Submit to use the example
           value.
         </p>
