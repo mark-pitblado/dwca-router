@@ -173,7 +173,7 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
             <DialogHeader>
               <DialogTitle>Generate QR Code</DialogTitle>
               <DialogDescription>
-                Generate a QR code that links to this resolver
+                Generate a QR code that links to this router
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
