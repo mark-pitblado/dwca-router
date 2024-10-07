@@ -59,6 +59,7 @@ export default async function ImagesPage({
           </BreadcrumbList>
         </Breadcrumb>
       </div>
+      <h1 className="text-2xl font-bold py-4 ">Images</h1>
       <div className="relative w-full max-w-lg mx-auto">
         <Carousel className="flex justify-center items-center">
           <CarouselPrevious className="absolute left-0 z-10 p-2" />
