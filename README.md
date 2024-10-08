@@ -2,17 +2,6 @@
 
 Find an occurrence, no matter where it lives. 
 
-Stack: 
-[![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
-[![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white)](#)
-[![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js&logoColor=white)](#)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](#)
-[![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=fff)](#)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](#)
-
-Standards:
-Formatter: Prettier
-
 ## Introduction
 
 This application resolves various URL structures used by aggregators and collection management systems so you don't have to. Rather, you encode a *single* piece of information into a QR code and place it next to the specimen. Instead of having to worry about whether a given URL is going to stand the test of time, you pick a router that you would like to use.
