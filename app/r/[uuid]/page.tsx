@@ -18,6 +18,7 @@ import SpecifyButton from "@/components/SpecifyButton";
 import SymbiotaButton from "@/components/SymbiotaButton";
 import ImageButton from "@/components/ImageButton";
 import GBIFButton from "@/components/GBIFButton";
+import PNWHerbariaButton from "@/components/PNWHerbaria";
 import UUIDBadge from "@/components/UUIDBadge";
 
 import {
@@ -28,6 +29,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { CircleHelp } from "lucide-react";
 
 export default function UuidPage({ params }: { params: { uuid: string } }) {
   const { uuid } = params;
@@ -55,12 +57,13 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
           <GBIFButton uuid={uuid} />
           <SpecifyButton uuid={uuid} />
           <SymbiotaButton uuid={uuid} />
+          <PNWHerbariaButton uuid={uuid} />
           <ImageButton uuid={uuid} />
           <Link
-            className="pt-16 underline text-sm text-gray-500 cursor-pointer"
+            className="pt-12 text-gray-500 cursor-pointer"
             href={`/faq/${uuid}`}
           >
-            Help
+            <CircleHelp />
           </Link>
         </div>
       </div>
