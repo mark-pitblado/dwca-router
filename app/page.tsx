@@ -26,7 +26,6 @@ export default function ResolverPage() {
       setError("Invalid UUID (version 1 or 4)");
     } else {
       setError("");
-      // Navigate to /{uuid} route with the valid UUID
       router.push(`/r/${finalInputValue}`);
     }
   };
