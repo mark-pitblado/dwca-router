@@ -1,4 +1,3 @@
-// components/UuidBadge.tsx
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -18,14 +17,8 @@ const UuidBadge = ({ uuid }: UuidBadgeProps) => {
       () => {
         toast({
           description: "UUID copied to clipboard!",
-          // Optionally include a ToastAction
           action: (
-            <ToastAction
-              altText="Copied"
-              onClick={() => {
-                /* Optional action */
-              }}
-            >
+            <ToastAction altText="Copied" onClick={() => {}}>
               OK
             </ToastAction>
           ),
