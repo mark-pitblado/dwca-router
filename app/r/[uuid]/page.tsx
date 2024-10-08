@@ -47,7 +47,7 @@ export default function UuidPage({ params }: { params: { uuid: string } }) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>{" "}
-        <QRCodeGenerator />
+        <QRCodeGenerator uuid={uuid} />
         <UUIDBadge uuid={uuid} />
         <h1 className="text-2xl font-bold">Select Viewing Option</h1>
         <div className="flex flex-col space-y-2 items-center w-full">
