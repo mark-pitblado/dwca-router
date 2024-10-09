@@ -57,6 +57,9 @@ npm install
 npm run dev
 ```
 
+### Licenses
+
+The code in this repository is released under the Apache-2.0 License. The dwca-router logo `assets/logo` is licensed to Mark Pitblado from the Noun Project under a Royalty-Free License.
 
 
 
