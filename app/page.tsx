@@ -55,6 +55,14 @@ export default function ResolverPage() {
           </div>
           {error && <p className="text-red-500">{error}</p>}
         </form>
+        <div className="fixed bottom-12">
+          <a
+            className="text-gray-600"
+            href="https://github.com/mark-pitblado/dwca-router"
+          >
+            Source code
+          </a>
+        </div>
       </div>
     </div>
   );
