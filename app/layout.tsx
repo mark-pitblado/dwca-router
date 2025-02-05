@@ -28,9 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script
-          src="https://cdn.usefathom.com/script.js"
-          data-site="JFGYSWID"
           defer
+          data-domain="dwca.net"
+          src="https://plausible.io/js/script.js"
         ></script>
       </head>
       <body
