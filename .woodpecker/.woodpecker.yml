@@ -1,3 +1,11 @@
+clone:
+  git:
+    image: woodpeckerci/plugin-git
+
+when:
+  branch: develop
+  event: push
+
 steps:
   prettier:
     image: woodpeckerci/plugin-prettier:next
