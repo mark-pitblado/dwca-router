@@ -60,22 +60,21 @@ export default async function ImagesPage({
         </Breadcrumb>
       </div>
       <h1 className="text-2xl font-bold py-4 ">Images</h1>
+      <span>Click on an image to open it up in fullscreen</span>
       <div className="relative w-full max-w-lg mx-auto">
-        <Carousel className="flex justify-center items-center">
-          <CarouselPrevious className="absolute left-0 z-10 p-2" />
-          <CarouselContent className="w-full flex justify-center items-center">
-            {mediaLinks.map((link: string, index: number) => (
-              <CarouselItem key={index} className="w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+          {mediaLinks.map((link: string, index: number) => (
+            <div key={index} className="shadow-lg rounded-lg overflow-hidden">
+              <a href={link} target="_blank" rel="noopener noreferrer">
                 <img
                   src={link}
                   alt={`Image ${index + 1}`}
-                  className="w-full h-auto max-h-[500px] rounded-lg object-cover"
+                  className="rounded-lg"
                 />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselNext className="absolute right-0 z-10 p-2" />
-        </Carousel>
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

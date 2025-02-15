@@ -1,0 +1,3 @@
+steps:
+  prettier:
+    image: woodpeckerci/plugin-prettier:next

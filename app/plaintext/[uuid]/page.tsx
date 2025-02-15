@@ -5,6 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import JsonDisplay from "@/components/JsonDisplay";
 import { notFound } from "next/navigation";
 
 export default async function PlaintextPage({
@@ -30,11 +31,12 @@ export default async function PlaintextPage({
 
   return (
     <div
-      className="flex flex-col justify-start items-start h-screen bg-[#f5f5f5] overflow-auto"
+      className="flex flex-col justify-start items-center h-screen bg-[#f5f5f5] overflow-auto"
       style={{ paddingTop: "5vh" }}
     >
+      <h1 className="text-2xl font-bold py-4 ">Plaintext</h1>
       {/* Breadcrumbs with back button */}
-      <div className="flex items-center justify-between w-full p-4">
+      <div className="flex items-center justify-center w-full p-4">
         <Breadcrumb>
           <BreadcrumbList className="flex space-x-2">
             <BreadcrumbItem>
@@ -53,17 +55,7 @@ export default async function PlaintextPage({
       </div>
 
       {/* JSON Content */}
-      <div className="p-4 w-full">
-        <pre className="text-sm whitespace-pre-wrap">
-          {results.length > 0 ? (
-            results.map((item: any, index: number) => (
-              <div key={index}>{JSON.stringify(item, null, 2)}</div>
-            ))
-          ) : (
-            <p>No results found</p>
-          )}
-        </pre>
-      </div>
+      <JsonDisplay results={results} />
     </div>
   );
 }
